@@ -140,5 +140,123 @@ ALTER TABLE Persons modify column age int check(age>18);
 
 SELECT * FROM Persons;
 
-INSERT INTO Persons VALUES(5,'Gandhi','Rahul',55,'gandhi_rahul154@gmail.com');
+INSERT INTO Persons VALUES(5,'Gandhi','Rahul',15,'gandhi_rahul154@gmail.com');
+
+INSERT INTO Persons VALUES(6,'GANDHI','SANJAY',14,'GANDHI','SANJAY54@GMAIL.COM');
+
+CREATE TABLE Employee (
+EmployeeID INT PRIMARY KEY,
+EmployeeName VARCHAR (100)NOT NULL,
+Department VARCHAR (50),
+Salary DECIMAL (10,2),
+JointDate DATE DEFAULT (CURRENT_DATE),
+City VARCHAR(50)
+);
+
+DESC Employee;
+
+
+-- Insert One Record --
+INSERT INTO Employee 
+(EmployeeID, EmployeeName , Department, Salary, City) VALUES (1, 'Rahul Sharma','IT',50000,'mumbai');
+
+select *from Employee;
+
+ALTER TABLE Employee
+MODIFY COLUMN Salary DECIMAL (10,2) DEFAULT (20000);
+
+INSERT INTO Employee
+(EmployeeID, EmployeeName , Department, City, JointDate)VALUES (2,'Darshan Panday','IT','nagpur','2026-08-30');
+
+INSERT INTO Employee
+(EmployeeID, EmployeeName , Department, City, JointDate)VALUES (3,'Aman Pandey','IT','nashik','2026-08-30');
+
+
+INSERT INTO Employee
+(EmployeeID, EmployeeNAme, Department, Salary, City)
+VALUES
+(4,'Priya Patil','HR',45000,'pune'),
+(5,'Amita kumar','Finance',600000,'Delhi'),
+(6,'Sneha Joshi','IT',55000,'Nagpur'),
+(7,'Rohan Verma','Marketing',48000,'Mumbai');
+
+# Adding DEFAULT Constraints to an existing table:
+ALTER TABLE Employee
+ALTER City SET DEFAULT 'Nagpur';
+
+desc Employee;
+
+INSERT INTO Employee
+(EmployeeID, EmployeeName , Department, Salary)
+VALUES 
+(8,'Neha Singh','HR','56000');
+
+-- Delete the entire row with specific condition of 'EmployeeID' is 7 of table 
+# delete from Employee where EmployeeID=7;
+
+-- Foreign key --
+
+# 1)Create the parent table 
+CREATE TABLE Department (
+DepartmentID INT PRIMARY KEY, 
+DepartmentName VARCHAR (50)
+);
+
+# 2) Insert Data into Department table
+INSERT INTO Department (DepartmentID, DepartmentName)
+VALUES
+(101,'IT'),
+(102,'HR'),
+(103,'Fiance');
+
+# 3) Create the child table with a forign key 
+
+CREATE TABLE Employee_child (
+EmployeeID INT PRIMARY KEY,
+EmployeeName VARCHAR (100),
+DepartmentID INT,
+ManegerID VARCHAR(200),
+
+FOREIGN KEY (DepartmentID)
+REFERENCES Department(DepartmentID),
+
+FOREIGN KEY (ManegerID)
+REFERENCES Maneger(ManegerID)
+
+
+);
+
+CREATE TABLE Maneger (
+ManegerID VARCHAR (200) PRIMARY KEY,
+Maneger_NAME VARCHAR (100) NOT NULL);
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
 
